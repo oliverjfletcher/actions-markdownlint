@@ -26,6 +26,7 @@ jobs:
         with:
           files: test/fail.md
           annotations: false
+          pr_comment: true
       - run: test "${{ steps.lint.outcome }}" == "failure"
 
   test-config:
@@ -36,7 +37,6 @@ jobs:
         with:
           files: test/fail.md
           config: test/.markdownlint.json
-          pr_comment: true
 
   test-fix:
     runs-on: ubuntu-latest
