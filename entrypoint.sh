@@ -48,12 +48,11 @@ if [ -n "$INPUT_IGNORE" ]; then
 fi
 
 if [ "$INPUT_PR_COMMENT" != "false" ]; then
-    # MARKDOWNLINT_CLI="$(markdownlint $MARKDOWNLINT $INPUT_FILES)"
-    # echo $MARKDOWNLINT_CLI >> 
-    
-    echo "MARKDOWNLINT_OUTPUT=$(markdownlint $MARKDOWNLINT $INPUT_FILES)" >> $GITHUB_OUTPUT
-    # echo "TESTING" >> $GITHUB_OUTPUT
-    # echo -e "$MARKDOWNLINT_CLI" >> $GITHUB_OUTPUT
+    MARKDOWNLINT_CLI="$(markdownlint $MARKDOWNLINT $INPUT_FILES --output output)"
+    echo "MARKDOWNLINT_OUTPUT=$(echo output)" >> $GITHUB_OUTPUT
+    echo "TESTING" >> $GITHUB_OUTPUT
+    # echo 'MARKDOWNLINT_OUTPUT<<EOF' >> $GITHUB_OUTPUT
+    # echo -e $(echo output) >> $GITHUB_OUTPUT
     # echo 'EOF' >> $GITHUB_OUTPUT
 else
     echo "::debug::linting ${INPUT_FILES}"

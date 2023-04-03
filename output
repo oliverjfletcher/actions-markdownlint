@@ -1,0 +1,5 @@
+test/fail.md:1 MD003/heading-style/header-style Heading style [Expected: atx; Actual: atx_closed]
+test/fail.md:3:1 MD004/ul-style Unordered list style [Expected: asterisk; Actual: dash]
+test/fail.md:4:1 MD004/ul-style Unordered list style [Expected: asterisk; Actual: dash]
+test/fail.md:6:81 MD013/line-length Line length [Expected: 80; Actual: 101]
+test/fail.md:8:1 MD033/no-inline-html Inline HTML [Element: p]
