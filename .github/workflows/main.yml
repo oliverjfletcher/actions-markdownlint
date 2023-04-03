@@ -61,7 +61,7 @@ jobs:
         uses: ./
         with:
           files: test/fail.md
-          config: test/.markdownlint.json
+          # config: test/.markdownlint.json
           pr_comment: true
           annotations: false
       - name: pr-comment
