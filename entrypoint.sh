@@ -50,7 +50,9 @@ fi
 if [ "$INPUT_PR_COMMENT" != "false" ]; then
     MARKDOWNLINT_CLI="$(markdownlint "$MARKDOWNLINT" "$INPUT_FILES" 2>&1)"
     MARKDOWNLINT_CLI="${MARKDOWNLINT_CLI//$'\r'/'%0D'}"
+    # shellcheck disable=SC3003
     echo "MARKDOWNLINT_OUTPUT<<EOF" >> "$GITHUB_OUTPUT"
+    # shellcheck disable=SC2129
     echo "$MARKDOWNLINT_CLI" >> "$GITHUB_OUTPUT"
     echo 'EOF' >> "$GITHUB_OUTPUT"
 else
