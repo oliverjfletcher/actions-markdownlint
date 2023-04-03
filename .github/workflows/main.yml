@@ -50,6 +50,9 @@ jobs:
 
   pr-comment:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
       - name: lint markdown
         id: pr-comment-lint
