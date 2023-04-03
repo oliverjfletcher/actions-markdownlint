@@ -48,7 +48,7 @@ if [ -n "$INPUT_IGNORE" ]; then
 fi
 
 if [ "$INPUT_PR_COMMENT" = true ]; then
-    output="$(markdownlint $MARKDOWNLINT $INPUT_FILES)"
+    output="${MARKDOWNLINT} --config ${INPUT_CONFIG}"
     echo 'MARKDOWNLINT_OUTPUT<<EOF' >> $GITHUB_OUTPUT
     echo -e $output >> $GITHUB_OUTPUT
     echo 'EOF' >> $GITHUB_OUTPUT
