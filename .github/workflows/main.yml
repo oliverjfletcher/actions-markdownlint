@@ -48,7 +48,7 @@ jobs:
           fix: true
       - run: test "$(md5sum test/fix.md)" == "d38a4c066f4c6e80a0409e23f68226bf  test/fix.md"
 
-  pr-comment:
+  test-pr-comment:
     runs-on: ubuntu-latest
     permissions:
       contents: read
