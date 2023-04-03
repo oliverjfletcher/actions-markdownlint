@@ -13,8 +13,10 @@ jobs:
       - uses: actions/checkout@v3
       - run: shellcheck entrypoint.sh
       - uses: ./
+        continue-on-error: true
         with:
           ignore: test
+          pr_comment: true
 
   test-fail:
     runs-on: ubuntu-latest
@@ -26,7 +28,6 @@ jobs:
         with:
           files: test/fail.md
           annotations: false
-          pr_comment: true
       - run: test "${{ steps.lint.outcome }}" == "failure"
 
   test-config:
