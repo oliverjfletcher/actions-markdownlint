@@ -47,7 +47,7 @@ if [ -n "$INPUT_IGNORE" ]; then
     MARKDOWNLINT="${MARKDOWNLINT} --ignore ${INPUT_IGNORE}"
 fi
 
-if [ "$INPUT_PR_COMMENT" = true ]; then
+if [ "$INPUT_PR_COMMENT" != "false" ]; then
     # output="$(markdownlint $MARKDOWNLINT $INPUT_FILES;return)"
     # output="${output//$'\r'/'%0D'}"
     markdownlint -c $INPUT_CONFIG $INPUT_FILES
