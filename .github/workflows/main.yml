@@ -87,7 +87,7 @@ jobs:
             
             \`\`\`\n
             ${process.env.MARKDOWN_LINT}
-            \`\`\`
+            \`\`\`\n
             
             </details>`;
             
