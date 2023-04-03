@@ -27,7 +27,6 @@ jobs:
         with:
           files: test/fail.md
           annotations: false
-          pr_comment: true
       - run: test "${{ steps.lint.outcome }}" == "failure"
 
   test-config:
@@ -52,18 +51,22 @@ jobs:
   pr-comment:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/github-script@v6
-      - uses: ./
-        if: github.event_name == 'pull_request'
-        env:
-          MARKDOWN_LINT: "#### Markdown Lint 🧹 📄 ✨ ${{ steps.lint.outputs.MARKDOWNLINT_OUTPUT }}"
+      - name: lint markdown
+        id: pr-comment-lint
+        uses: ./
         with:
           files: test/fail.md
-          config: test/.markdownlint.json
+          annotations: false
+          pr_comment: true
+      - name: pr-comment
+        uses: actions/github-script@v6
+        if: github.event_name == 'pull_request'
+        env:
+          MARKDOWN_LINT: "#### Markdown Lint 🧹 📄 ✨ ${{ steps.pr-comment-lint.outputs.MARKDOWNLINT_OUTPUT }}"
+        with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const output = `#### Markdown Lint 🧹 📄 ✨\`${{ steps.lint.outcome }}\`
+            const output = `#### Markdown Lint 🧹 📄 ✨\`${{ steps.pr-comment-lint.outcome }}\`
             <details><summary>Show Linting Results</summary>
             \n
             ${process.env.MARKDOWN_LINT}
