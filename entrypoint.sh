@@ -52,6 +52,7 @@ if [ "$INPUT_PR_COMMENT" != "false" ]; then
     # MARKDOWNLINT_CLI="$(markdownlint $MARKDOWNLINT $INPUT_FILES)"
 
     echo MARKDOWNLINT_OUTPUT="$(markdownlint $MARKDOWNLINT $INPUT_FILES)" >> $GITHUB_OUTPUT
+    echo $GITHUB_OUTPUT
     # # output="$(markdownlint $INPUT_FILES)"
     # MARKDOWNLINT_CLI="${MARKDOWNLINT_CLI//$'\r'/'%0D'}"   
     # echo 'MARKDOWNLINT_OUTPUT<<EOF' >> $GITHUB_OUTPUT
