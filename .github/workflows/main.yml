@@ -72,7 +72,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const output = `#### Markdown Lint 🧹 📄 ✨\`${{ steps.pr-comment-lint.outcome }}\`
+            const output = `#### Markdown Linting 🧹 📄 ✨\`${{ steps.pr-comment-lint.outcome }}\`
             <details><summary>Show Linting Results</summary>
             \n
             ${process.env.MARKDOWN_LINT}
