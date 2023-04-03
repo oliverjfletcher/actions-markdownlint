@@ -48,13 +48,12 @@ if [ -n "$INPUT_IGNORE" ]; then
 fi
 
 if [ "$INPUT_PR_COMMENT" != "false" ]; then
-    # output="$(markdownlint $MARKDOWNLINT $INPUT_FILES;return)"
-    # output="${output//$'\r'/'%0D'}"
-    echo "::debug::linting ${INPUT_FILES}"
     markdownlint ${INPUT_FILES}
-    # echo 'MARKDOWNLINT_OUTPUT<<EOF' >> $GITHUB_OUTPUT
-    # echo -e $output >> $GITHUB_OUTPUT
-    # echo 'EOF' >> $GITHUB_OUTPUT
+    output="$(markdownlint $MARKDOWNLINT $INPUT_FILES;return)"
+    output="${output//$'\r'/'%0D'}"    
+    echo 'MARKDOWNLINT_OUTPUT<<EOF' >> $GITHUB_OUTPUT
+    echo -e $output >> $GITHUB_OUTPUT
+    echo 'EOF' >> $GITHUB_OUTPUT
 else
     echo "::debug::linting ${INPUT_FILES}"
     # shellcheck disable=SC2086

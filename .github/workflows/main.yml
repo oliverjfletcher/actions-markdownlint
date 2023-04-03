@@ -64,7 +64,7 @@ jobs:
           files: test/fail.md
           # config: test/.markdownlint.json
           pr_comment: true
-          annotations: false
+          # annotations: false
       - name: pr-comment
         uses: actions/github-script@v6
         if: github.event_name == 'pull_request'
