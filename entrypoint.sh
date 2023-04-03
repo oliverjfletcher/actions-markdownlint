@@ -50,9 +50,11 @@ fi
 if [ "$INPUT_PR_COMMENT" != "false" ]; then
     MARKDOWNLINT_CLI="$(markdownlint $MARKDOWNLINT $INPUT_FILES 2>&1)"
     MARKDOWNLINT_CLI="${MARKDOWNLINT_CLI//'%'/'%25'}"
+    MARKDOWNLINT_CLI="${MARKDOWNLINT_CLI//$'\n'/'%0A'}"
+    MARKDOWNLINT_CLI="${MARKDOWNLINT_CLI//$'\r'/'%0D'}"
     echo "MARKDOWNLINT_OUTPUT<<EOF" >> $GITHUB_OUTPUT
     echo "TESTING" >> $GITHUB_OUTPUT
-    echo $MARKDOWNLINT_CLI >> $GITHUB_OUTPUT
+    echo -e $MARKDOWNLINT_CLI >> $GITHUB_OUTPUT
     echo 'EOF' >> $GITHUB_OUTPUT
 else
     echo "::debug::linting ${INPUT_FILES}"
