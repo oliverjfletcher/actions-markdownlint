@@ -50,8 +50,7 @@ fi
 if [ "$INPUT_PR_COMMENT" = true ]; then
     # output="$(markdownlint $MARKDOWNLINT $INPUT_FILES;return)"
     # output="${output//$'\r'/'%0D'}"
-    echo "::debug::linting ${INPUT_FILES}"
-    markdownlint ${MARKDOWNLINT} ${INPUT_FILES}
+    markdownlint -c $INPUT_CONFIG $INPUT_FILES
     echo 'MARKDOWNLINT_OUTPUT<<EOF' >> $GITHUB_OUTPUT
     echo -e $output >> $GITHUB_OUTPUT
     echo 'EOF' >> $GITHUB_OUTPUT
