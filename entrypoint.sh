@@ -48,11 +48,10 @@ if [ -n "$INPUT_IGNORE" ]; then
 fi
 
 if [ "$INPUT_PR_COMMENT" != "false" ]; then
-    markdownlint $INPUT_FILES
     output="$(markdownlint $INPUT_FILES)"
-    # output="${output//$'\r'/'%0D'}"    
+    output="${output//$'\r'/'%0D'}"    
     echo 'MARKDOWNLINT_OUTPUT<<EOF' >> $GITHUB_OUTPUT
-    echo -e $output >> $GITHUB_OUTPUT
+    echo -e "$output" >> $GITHUB_OUTPUT
     echo 'EOF' >> $GITHUB_OUTPUT
 else
     echo "::debug::linting ${INPUT_FILES}"
