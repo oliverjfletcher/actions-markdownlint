@@ -49,10 +49,11 @@ fi
 
 if [ "$INPUT_PR_COMMENT" != "false" ]; then
     MARKDOWNLINT_CLI="$(markdownlint $MARKDOWNLINT $INPUT_FILES)"
+    echo $MARKDOWNLINT_CLI
     # output="$(markdownlint $INPUT_FILES)"
     # output="${output//$'\r'/'%0D'}"   
     echo 'MARKDOWNLINT_OUTPUT<<EOF' >> $GITHUB_OUTPUT
-    echo -e "$MARKDOWNLINT_CLI" >> $GITHUB_OUTPUT
+    echo "$MARKDOWNLINT_CLI" >> $GITHUB_OUTPUT
     echo 'EOF' >> $GITHUB_OUTPUT
 else
     echo "::debug::linting ${INPUT_FILES}"
