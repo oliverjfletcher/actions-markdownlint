@@ -51,7 +51,8 @@ if [[ $INPUT_PR_COMMENT = true ]]; then
     echo "::debug::linting ${INPUT_FILES}"
     echo 'MARKDOWNLINT_OUTPUT<<EOF' >> $GITHUB_OUTPUT
     output=$(markdownlint $MARKDOWNLINT $INPUT_FILES)
-    echo -e $output >> $GITHUB_OUTPUT
+    echo -e "$output"
+    echo -e "$output" >> $GITHUB_OUTPUT
     echo 'EOF' >> $GITHUB_OUTPUT
 else
     echo "::debug::linting ${INPUT_FILES}"
