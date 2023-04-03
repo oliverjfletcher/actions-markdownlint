@@ -53,10 +53,10 @@ jobs:
     steps:
       - name: lint markdown
         id: pr-comment-lint
-        uses: ./
+        uses: actions/checkout@v3
         with:
           files: test/fail.md
-          annotations: false
+          config: test/.markdownlint.json
           pr_comment: true
       - name: pr-comment
         uses: actions/github-script@v6
