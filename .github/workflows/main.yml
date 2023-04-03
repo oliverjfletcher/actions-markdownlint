@@ -72,15 +72,37 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const output = `#### Markdown Linting 🧹 📄 ✨\`${{ steps.pr-comment-lint.outcome }}\`
-            <details><summary>Show Linting Results</summary>
-            \n
-            ${process.env.MARKDOWN_LINT}
-            \n
-            </details>`;
-              github.rest.issues.createComment({
-              issue_number: context.issue.number,
+            const { data: comments } = await github.rest.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: output
+              issue_number: context.issue.number,
             })
+            const botComment = comments.find(comment => {
+              return comment.user.type === 'Bot' && comment.body.includes('Markdown Linting')
+            })
+
+            const output = `#### Markdown Linting 🧹 📄 ✨\`${{ steps.pr-comment-lint.outcome }}\`
+
+            <details><summary>Show Markdown Linting Results</summary>
+            
+            \`\`\`\n
+            ${process.env.MARKDOWN_LINT
+            \`\`\`
+            
+            </details>`;
+            
+            if (botComment) {
+              github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: output
+              })
+            } else {
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: output
+              })
+            }
