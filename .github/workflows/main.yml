@@ -56,7 +56,8 @@ jobs:
     steps:
       - name: lint markdown
         id: pr-comment-lint
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - uses: ./
         with:
           files: test/fail.md
           config: test/.markdownlint.json
