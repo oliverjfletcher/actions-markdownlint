@@ -49,7 +49,7 @@ fi
 
 if [ "$INPUT_PR_COMMENT" != "false" ]; then
     markdownlint $INPUT_FILES
-    output="$(markdownlint ${INPUT_FILES})"
+    output="$(markdownlint $INPUT_FILES)"
     # output="${output//$'\r'/'%0D'}"    
     echo 'MARKDOWNLINT_OUTPUT<<EOF' >> $GITHUB_OUTPUT
     echo -e $output >> $GITHUB_OUTPUT
