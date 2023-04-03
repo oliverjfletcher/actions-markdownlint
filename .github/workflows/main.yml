@@ -58,6 +58,7 @@ jobs:
         uses: actions/checkout@v3
       - name: lint markdown
         id: pr-comment-lint
+        continue-on-error: true
         uses: ./
         with:
           files: test/fail.md
