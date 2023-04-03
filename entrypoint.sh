@@ -47,13 +47,12 @@ if [ -n "$INPUT_IGNORE" ]; then
     MARKDOWNLINT="${MARKDOWNLINT} --ignore ${INPUT_IGNORE}"
 fi
 
-if [ $INPUT_PR_COMMENT = true ]; then
+if [ "$INPUT_PR_COMMENT" = true ]; then
     output="$(markdownlint "$MARKDOWNLINT" "$INPUT_FILES")"
-    echo "$output"
     echo "::debug::linting ${INPUT_FILES}"
-    echo "MARKDOWNLINT_OUTPUT<<EOF" >> $GITHUB_OUTPUT
-    echo "$output" >> $GITHUB_OUTPUT
-    echo "EOF" >> $GITHUB_OUTPUT
+    echo "MARKDOWNLINT_OUTPUT<<EOF" >> "$GITHUB_OUTPUT"
+    echo "$output" >> "$GITHUB_OUTPUT"
+    echo "EOF" >> "$GITHUB_OUTPUT"
 else
     echo "::debug::linting ${INPUT_FILES}"
     # shellcheck disable=SC2086
