@@ -64,12 +64,11 @@ jobs:
           files: test/fail.md
           # config: test/.markdownlint.json
           pr_comment: true
-          annotations: false
       - name: pr-comment
         uses: actions/github-script@v6
         if: github.event_name == 'pull_request'
         env:
-          MARKDOWN_LINT: "#### Markdown Lint 🧹 📄 ✨ ${{ steps.pr-comment-lint.outputs.MARKDOWNLINT_OUTPUT }}"
+          MARKDOWN_LINT: ${{ steps.pr-comment-lint.outputs.MARKDOWNLINT_OUTPUT }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
