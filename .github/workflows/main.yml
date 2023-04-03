@@ -86,7 +86,7 @@ jobs:
             <details><summary>Show Markdown Linting Results</summary>
             
             \`\`\`\n
-            ${process.env.MARKDOWN_LINT
+            ${process.env.MARKDOWN_LINT}
             \`\`\`
             
             </details>`;
